@@ -1,0 +1,18 @@
+.section {
+	/* positioning */
+	position: relative;
+}
+
+.full {
+	/* position */
+	position: absolute;
+	--_offset: 0.5rem;
+	top: var(--_offset);
+	right: var(--_offset);
+
+	/* sizing */
+	--_size: 1.5rem;
+	width: var(--_size);
+	height: var(--_size);
+	font-size: var(--_size);
+}

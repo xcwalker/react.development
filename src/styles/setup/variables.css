@@ -1,0 +1,73 @@
+html {
+  --selector: #0061e0;
+
+  /* colors on backdrop */
+  --backdrop-text: #ffffff;
+  --backdrop-text_alt: #cccccc;
+
+  /** form colors **/
+  --form-color-selector: hsl(214, 100%, 44%);
+  --form-color-invalid: hsl(0, 100%, 50%);
+  --form-color-invalid-hold: hsl(39, 100%, 50%);
+  --form-color-valid-hold: hsl(120, 100%, 38%);
+  --form-color-valid: hsl(120, 100%, 25%);
+
+  --form-color-selector-opac: hsl(214, 100%, 44%, 0.25);
+  --form-color-invalid-opac: hsl(0, 100%, 50%, 0.25);
+  --form-color-invalid-hold-opac: hsl(39, 100%, 50%, 0.25);
+  --form-color-valid-hold-opac: hsl(120, 100%, 38%, 0.25);
+  --form-color-valid-opac: hsl(120, 100%, 25%, 0.25);
+
+  /* other */
+  --border-radius: 0.5rem;
+  --content-max-width: min(calc(100% - 2rem), 1200px);
+  --content-small-max-width: min(calc(100% - 2rem), 800px);
+}
+
+html,
+html[data-theme="light"],
+.preview {
+  --text: hsl(0, 0%, 0%);
+  --text_alt: hsl(0, 0%, 15%);
+  --background: hsl(0, 0%, 90%);
+  --primary: hsl(0, 0%, 80%);
+  --secondary: hsl(0, 0%, 70%);
+  --accent: #0061E0;
+  --accent-hover: rgb(from var(--accent) r g b / 0.8);
+  --text-on-accent: var(--text);
+  --text-inverse: hsl(0, 0%, 100%);
+  --backdrop-blur: 4rem;
+  --backdrop-brightness: 65%;
+  --danger: hsl(0, 100%, 50%);
+}
+
+html[data-theme="oled"] {
+  --text: hsl(0, 0%, 100%);
+  --text_alt: hsl(0, 0%, 85%);
+  --background: hsl(0, 0%, 0%);
+  --primary: hsl(0, 0%, 10%);
+  --secondary: hsl(0, 0%, 20%);
+  --accent: #0061E0;
+  --accent-hover: rgb(from var(--accent) r g b / 0.8);
+  --text-on-accent: var(--text);
+  --text-inverse: hsl(0, 0%, 0%);
+  --danger: hsl(0, 100%, 50%);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="dark"],
+  html[data-theme="system"],
+  .preview[data-theme="dark"],
+  .preview[data-theme="system"] {
+    --text: hsl(0, 0%, 100%);
+    --text_alt: hsl(0, 0%, 65%);
+    --background: hsl(0, 0%, 10%);
+    --primary: hsl(0, 0%, 20%);
+    --secondary: hsl(0, 0%, 30%);
+    --accent: #0061E0;
+    --accent-hover: rgb(from var(--accent) r g b / 0.8);
+    --text-on-accent: var(--text);
+    --text-inverse: hsl(0, 0%, 0%);
+    --danger: hsl(0, 100%, 50%);
+  }
+}
