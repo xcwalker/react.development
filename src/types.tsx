@@ -28,6 +28,9 @@ export type EventType = {
     end: string;
   };
   location: string;
+  metaData: {
+    organizationID: string;
+  };
 };
 
 export const EventVariants = {

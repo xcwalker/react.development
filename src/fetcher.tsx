@@ -8,7 +8,9 @@ export default function Fetcher() {
 	const setProjects = useSetAtom(projectsAtom);
 
 	useEffect(() => {
-		FirebaseGetRealtimeDataSet("events", setEvents);
+		FirebaseGetRealtimeDataSet("events", setEvents, {
+      organizationID: import.meta.env.VITE_ORGANIZATION_ID,
+    });
 		FirebaseGetRealtimeDataSet("projects", setProjects, {
 			organizationID: import.meta.env.VITE_ORGANIZATION_ID
 		});

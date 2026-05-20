@@ -69,6 +69,22 @@ export default function Project_images(props: {
       />
       <MasonryPhotoAlbum
         photos={images}
+        sizes={{
+          size: "1200px",
+          sizes: [
+            {
+              size: "calc(100vw - 2rem)",
+              viewport: "(max-width: 1200px)",
+            }
+          ]
+        }}
+        columns={(width) => {
+          console.log(width);
+          if (width >= 1200) return 4;
+          else if (width >= 900) return 3;
+          else if (width >= 600) return 2;
+          return 1;
+        }}
         breakpoints={[300, 600, 900, 1200, 1500, 1800, 2100]}
         onClick={({ index: current }) => {
           setSlideIndex(current);
@@ -76,9 +92,7 @@ export default function Project_images(props: {
         }}
         render={{
           button: (props) => <button {...props} tabIndex={-1} />,
-          extras: () => (
-            <GFIcon className={styles.full} icon="fullscreen" />
-          ),
+          extras: () => <GFIcon className={styles.full} icon="fullscreen" />,
         }}
       />
       <Lightbox

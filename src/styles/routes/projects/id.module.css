@@ -2,25 +2,25 @@
 }
 
 .header {
-	/* position */
-	position: relative;
+  /* position */
+  position: relative;
 
   /* sizing */
   width: 100%;
   height: 350px;
 
-	/* flex */
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: center;
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .thumbnail {
   /* position */
   position: absolute;
-	inset: 0;
-	z-index: -1;
+  inset: 0;
+  z-index: -1;
 
   /* sizing */
   width: 100%;
@@ -54,36 +54,75 @@
 }
 
 .header .container {
-	/* sizing */
-	width: var(--content-max-width);
-	height: fit-content;
+  /* sizing */
+  width: var(--content-max-width);
+  height: fit-content;
 
-	/* flex */
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-start;
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .info {
-	/* flex */
-	display: flex;
-	flex-direction: column;
+  /* flex */
+  display: flex;
+  flex-direction: column;
 }
 
 .header .title {
-	/* spacing */
-	margin: 0;
-	padding: 0;
+  /* spacing */
+  margin: 0;
+  padding: 0;
 
-	/* text */
-	font-size: 2rem;
-	font-weight: bold;
-	color: var(--text);
+  /* text */
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
 }
 
 .main {
-	/* sizing */
-	width: var(--content-max-width);
-	margin-inline: auto;
+  /* sizing */
+  width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.description {
+  display: block;
+}
+
+.description > h1,
+.description > h2,
+.description > h3,
+.description > h4,
+.description > h5,
+.description > h6 {
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.description em {
+	font-style: italic;
+}
+
+.description blockquote {
+  display: inline-block;
+
+  padding: 1rem;
+  background-color: var(--secondary);
+
+  & * {
+    margin: 0;
+  }
+}
+
+.description code {
+  display: inline-block;
+  padding: 1rem;
+
+  /* styling */
+  background-color: var(--text-inverse);
+  color: var(--text);
 }

@@ -95,7 +95,9 @@ function NextEvent() {
                 </span>
                 <span>Join Us</span>
               </div>
-              <div className={landingStyles.details}>
+              <div
+                className={`${landingStyles.details} ${landingStyles.desktop}`}
+              >
                 <div className={landingStyles.title}>
                   <span className={landingStyles.name}>
                     {nextEvent.value.title}
@@ -120,11 +122,39 @@ function NextEvent() {
                   </span>
                 )}
               </div>
+              <div
+                className={`${landingStyles.spacer} ${landingStyles.mobile}`}
+              />
               <div className={landingStyles.callToAction}>{callToAction}</div>
               <GFIcon
                 icon="chevron_right"
                 className={landingStyles.iconRight}
               />
+            </div>
+            <div
+              className={`${landingStyles.details} ${landingStyles.mobile}`}
+            >
+              <div className={landingStyles.title}>
+                <span className={landingStyles.name}>
+                  {nextEvent.value.title}
+                </span>
+                <span className={landingStyles.separatorDot}> • </span>
+                <span className={landingStyles.date}>
+                  {nextEventDate?.toLocaleDateString()} (
+                  {nextEventDuration
+                    ? `${Math.floor(nextEventDuration / (1000 * 60 * 60))}h ${Math.floor((nextEventDuration % (1000 * 60 * 60)) / (1000 * 60))}m`
+                    : ""}
+                  )
+                </span>
+              </div>
+              {nextEvent.value.location !== "" && (
+                <span className={landingStyles.location}>
+                  {nextEvent.value.location}
+                </span>
+              )}
+              {nextEvent.value.location === "" && (
+                <span className={landingStyles.domain}>{nextEventDomain}</span>
+              )}
             </div>
           </NavLink>
           <div className={landingStyles.displayLine} />
