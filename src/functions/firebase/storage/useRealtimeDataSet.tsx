@@ -20,8 +20,6 @@ export default async function FirebaseGetRealtimeDataSet(
     (querySnapshot) => {
       const output: { id: string; value: unknown }[] = [];
 
-      console.log(querySnapshot)
-
       querySnapshot.forEach((doc) => {
         const id = options?.idReplace ? options.idReplace(doc.id) : doc.id;
         output.push({ id, value: doc.data() });

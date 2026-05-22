@@ -1,8 +1,26 @@
 .header {
+  /* position */
+  position: fixed;
+  inset: 0;
+  bottom: auto;
+  z-index: 1000;
   /* sizing */
-  height: 2.5rem;
+  height: 2.75rem;
 
-  background-color: var(--primary);
+  background: #000000;
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+
+    rgb(from var(--primary) r g b / 0) 100%
+  );
+  transition: background-size 0.3s ease;
+  background-size: 100% 100%;
+  overflow: clip;
+
+  &.scrolled {
+    background-size: 100% 500%;
+  }
 }
 
 .container {
@@ -55,9 +73,9 @@
   font-size: 0.9rem;
   line-height: 1;
 
-	/* transition */
-	transition: color 0.3s ease;
-	transform-origin: left;
+  /* transition */
+  transition: color 0.3s ease;
+  transform-origin: left;
 
   &::before {
     content: "";
@@ -73,16 +91,33 @@
     /* hiding */
     scale: 0 1;
     transform-origin: left;
-		transition: scale 0.3s ease;
+    transition: scale 0.3s ease;
   }
 
   &:hover,
-	&:global(.active) {
-		color: var(--text-inverse);
+  &:global(.active) {
+    color: var(--text-inverse);
 
     &::before {
       /* showing */
       scale: 1 1;
+    }
+
+    &:global(.active) {
+      color: var(--accent);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    &:global(.active) {
+      color: var(--text);
+
+      &::before {
+        /* showing */
+        scale: 0 1;
+      }
     }
   }
 }

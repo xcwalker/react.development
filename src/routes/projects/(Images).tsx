@@ -79,7 +79,6 @@ export default function Project_images(props: {
           ]
         }}
         columns={(width) => {
-          console.log(width);
           if (width >= 1200) return 4;
           else if (width >= 900) return 3;
           else if (width >= 600) return 2;

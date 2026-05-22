@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Home from "@/routes/Home";
+import Home from "@/routes/home/Index";
 import Project_Layout from "./routes/projects/Layout";
 import Project_Index from "./routes/projects/Index";
-import Project_ID from "./routes/projects/id";
+import Project_ID from "./routes/projects/Id";
 
 export default function Router() {
   return (

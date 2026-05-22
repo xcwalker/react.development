@@ -287,7 +287,7 @@
   height: 2rem;
 
   /* styling */
-  /* overflow: clip; */
+  overflow: clip;
 
   &::before {
     content: "";
@@ -301,14 +301,14 @@
       rgba(from var(--text_alt) r g b / 0.7) 100%
     );
 
-    --_animation_duration: 2s;
-    animation: scroll var(--_animation_duration) linear infinite;
+    --_animation_duration: 3s;
+    animation: scroll var(--_animation_duration) ease-in-out infinite;
   }
 }
 
 @keyframes scroll {
   0% {
-    transform: translateY(50%);
+    transform: translateY(100%);
     opacity: 0;
   }
 
@@ -318,7 +318,7 @@
   }
 
   100% {
-    transform: translateY(-50%);
+    transform: translateY(-100%);
     opacity: 0;
   }
 }

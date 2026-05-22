@@ -6,12 +6,14 @@ import "./styles/setup/variables.css";
 import "./styles/setup/fonts.css";
 import Fetcher from "./fetcher.tsx";
 import { HelmetProvider } from "@dr.pogodin/react-helmet";
+import Footer from "./components/footer.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HelmetProvider>
       <Fetcher />
       <Router />
+      <Footer />
     </HelmetProvider>
   </StrictMode>,
 );

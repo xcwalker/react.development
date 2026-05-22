@@ -1,0 +1,34 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+	/* spacing */
+  padding: 0;
+  margin: 0;
+
+	/* flex */
+  display: flex;
+	gap: 0.25rem;
+
+	/* text */
+	font-size: 0.75rem;
+
+	/* styling */
+  list-style: none;
+}
+
+.crumb {
+  text-decoration: none;
+  color: var(--accent);
+
+	&:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.current {
+  font-weight: bold;
+}

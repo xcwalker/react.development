@@ -8,7 +8,9 @@ import Markdown from "react-markdown";
 import Project_images from "./(Images)";
 import remarkGfm from "remark-gfm";
 import supersub from "remark-supersub";
-import PageSeo from "@/components/PageSeo";
+import PageSeo from "@/components/pageSeo";
+import Image from "@/components/image";
+import Breadcrumbs from "@/components/breadcrumbs";
 
 export default function Project_ID() {
   const { id } = useParams<{ id: string }>();
@@ -24,20 +26,29 @@ export default function Project_ID() {
 
   return (
     <>
-    <PageSeo title={data.title} description={data.subTitle} image={metadata.thumbnail} /> 
+      <PageSeo
+        title={data.title ?? "Default title"}
+        description={data.subTitle ?? undefined}
+        image={
+          metadata.thumbnail && metadata.thumbnail !== ""
+            ? metadata.thumbnail
+            : undefined
+        }
+      />
       <Section id={`project-${id}`} className={styles.section}>
         <header className={styles.header}>
           <div className={styles.thumbnail}>
-            <img
+            <Image
               src={metadata.thumbnail}
-              alt={""}
               className={styles.thumbnail}
+              usePlaceholder
             />
           </div>
           <div className={styles.container}>
             <div className={styles.info}>
               <h1 className={styles.title}>{data.title}</h1>
               <span className={styles.subTitle}>{data.subTitle}</span>
+              <Breadcrumbs />
             </div>
             <div className={styles.actions}>
               <NavButton

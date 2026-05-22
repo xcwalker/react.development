@@ -1,6 +1,10 @@
 .events {
   /* styling */
   background-color: var(--accent);
+
+  &.past {
+    background-color: transparent;
+  }
 }
 
 .container {
@@ -13,6 +17,15 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.heading {
+  /* text */
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  text-transform: capitalize;
 }
 
 .list {
@@ -55,7 +68,7 @@
     line-height: 1;
 
     &.special {
-      color: var(--accent);
+      color: var(--text);
     }
   }
 }

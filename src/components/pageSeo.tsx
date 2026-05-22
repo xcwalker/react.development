@@ -7,10 +7,15 @@ export default function PageSeo(props: {
   description?: string;
   image?: string;
 }) {
+  console.log(props.description, props.image, props.title);
   return (
     <>
       <Helmet>
-        <title>{props.title}{SEO.separator}{SEO.siteName}</title>
+        <title>
+          {props.title}
+          {SEO.separator}
+          {SEO.siteName}
+        </title>
         {props.description && (
           <meta name="description" content={props.description.toString()} />
         )}
