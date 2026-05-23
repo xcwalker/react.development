@@ -17,12 +17,14 @@ export default function Home() {
       <Home_Items
         itemSet={projects}
         type="project"
+        limit={3}
       />
       <Home_Events type="past" />
       <Home_About />
       <Home_Items
         itemSet={blog}
         type="blog"
+        limit={3}
       />
     </main>
   );

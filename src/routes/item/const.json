@@ -3,12 +3,14 @@
 		"title": "Projects",
 		"buttonText": "View Project",
 		"href": "/projects/",
-		"hasThumbnail": true
+		"hasThumbnail": true,
+		"limitButton": "View All Projects"
 	},
 	"blog": {
 		"title": "Blog",
 		"buttonText": "View Blog",
 		"href": "/blog/",
-		"hasThumbnail": false
+		"hasThumbnail": false,
+		"limitButton": "View All Blog Posts"
 	}
 }

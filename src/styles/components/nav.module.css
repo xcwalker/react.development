@@ -45,16 +45,17 @@ button.button {
     font-size: 0.8rem;
     font-weight: 500;
     line-height: 1;
-    text-decoration: solid underline !important;
 
     /* styling */
     text-decoration: none;
-    background: var(--primary);
     color: var(--text);
 
-    &:hover {
+    &:global(.active) {
       background: var(--secondary);
-      color: var(--accent);
+    }
+
+    &:hover {
+      background: var(--accent);
     }
 
     &:focus-visible {

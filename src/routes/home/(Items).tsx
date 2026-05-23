@@ -12,9 +12,15 @@ export function Home_Items(props: {
   type: "project" | "blog";
   canSort?: boolean;
   hideTitle?: boolean;
+  limit?: number;
 }) {
-  const [sortMethod, setSortMethod] = useState<keyof typeof itemSorter>(Object.keys(itemSorter)[0] as keyof typeof itemSorter);
+  const [sortMethod, setSortMethod] = useState<keyof typeof itemSorter>(
+    Object.keys(itemSorter)[0] as keyof typeof itemSorter,
+  );
   const sortedItems = [...props.itemSet].sort(itemSorter[sortMethod].func);
+  const limitedItems = props.limit
+    ? sortedItems.slice(0, props.limit)
+    : sortedItems;
 
   const methods = Object.keys(itemSorter) as (keyof typeof itemSorter)[];
 
@@ -43,7 +49,7 @@ export function Home_Items(props: {
         )}
       </header>
       <ol className={styles.list}>
-        {sortedItems.map((project) => (
+        {limitedItems.map((project) => (
           <li key={project.id}>
             <Item
               id={project.id}
@@ -55,6 +61,12 @@ export function Home_Items(props: {
           </li>
         ))}
       </ol>
+      {props.limit && props.itemSet.length > props.limit && (
+        <NavButton
+          href={itemConst[props.type].href}
+          text={itemConst[props.type].limitButton}
+        />
+      )}
     </Section>
   );
 }
@@ -85,9 +97,7 @@ function Item(props: {
         {metadata.collectionName && (
           <>
             <span className={styles.separatorDot}> • </span>
-            <span className={styles.collection}>
-              {metadata.collectionName}
-            </span>
+            <span className={styles.collection}>{metadata.collectionName}</span>
           </>
         )}
       </span>
