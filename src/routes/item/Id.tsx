@@ -1,28 +1,32 @@
-import { projectsAtom } from "@/atoms";
 import Section from "@/components/section";
-import { useAtomValue } from "jotai";
-import { useParams } from "react-router";
-import styles from "@/styles/routes/projects/id.module.css";
+import { useOutletContext, useParams } from "react-router";
+import styles from "@/styles/routes/item/id.module.css";
 import { NavButton } from "@/components/button";
 import Markdown from "react-markdown";
-import Project_images from "./(Images)";
+import Item_images from "./(Images)";
 import remarkGfm from "remark-gfm";
 import supersub from "remark-supersub";
 import PageSeo from "@/components/pageSeo";
 import Image from "@/components/image";
 import Breadcrumbs from "@/components/breadcrumbs";
+import type { ItemType } from "@/types";
 
-export default function Project_ID() {
+export default function Item_ID() {
   const { id } = useParams<{ id: string }>();
-  const projects = useAtomValue(projectsAtom);
-  const project = projects.find((p) => p.id === id);
+  const { itemSet } = useOutletContext<{
+    itemSet: {
+      id: string;
+      value: ItemType;
+    }[];
+  }>();
+  const item = itemSet.find((p) => p.id === id);
 
-  if (!project) {
+  if (!item) {
     return <div>Project not found</div>;
   }
 
-  const data = project.value.data;
-  const metadata = project.value.metaData;
+  const data = item.value.data;
+  const metadata = item.value.metaData;
 
   return (
     <>
@@ -71,7 +75,7 @@ export default function Project_ID() {
               {data.description}
             </Markdown>
           </Section>
-          <Project_images item={project.value} slug={id} />
+          <Item_images item={item.value} slug={id} />
         </main>
       </Section>
     </>

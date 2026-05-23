@@ -1,5 +1,5 @@
 import { type ItemType } from "@/types";
-import styles from "@/styles/routes/projects/images.module.css";
+import styles from "@/styles/routes/item/images.module.css";
 import { useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -10,7 +10,7 @@ import Button from "@/components/button";
 import "react-photo-album/masonry.css";
 import Section from "@/components/section";
 
-export default function Project_images(props: {
+export default function Item_images(props: {
   item: ItemType;
   slug: string;
 }) {

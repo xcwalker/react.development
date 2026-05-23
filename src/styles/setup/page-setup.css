@@ -81,3 +81,7 @@ html {
   font-family: plateFont; /* set name */
   src: url(/UKNumberPlate.ttf); /* url of the font */
 }
+
+.headerSpacer {
+  height: 1rem; 
+}

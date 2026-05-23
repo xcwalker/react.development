@@ -16,6 +16,7 @@
 
 .logo {
   max-width: 275px;
+  fill: currentColor;
 }
 
 .text {

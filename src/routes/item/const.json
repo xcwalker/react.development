@@ -1,0 +1,14 @@
+{
+	"project": {
+		"title": "Projects",
+		"buttonText": "View Project",
+		"href": "/projects/",
+		"hasThumbnail": true
+	},
+	"blog": {
+		"title": "Blog",
+		"buttonText": "View Blog",
+		"href": "/blog/",
+		"hasThumbnail": false
+	}
+}

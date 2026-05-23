@@ -1,7 +1,7 @@
-import { NavLink } from "react-router";
 import { Logo } from "@/components/logo";
 import styles from "@/styles/components/header.module.css";
 import { useEffect, useState } from "react";
+import Nav from "./nav";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,14 +26,22 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         <Logo.horizontal className={styles.logo} />
-        <ul className={styles.nav}>
-          <NavLink to="/" className={styles.link}>
-            Home
-          </NavLink>
-          <NavLink to="/projects" className={styles.link}>
-            Projects
-          </NavLink>
-        </ul>
+        <Nav
+          links={[
+            {
+              label: "Home",
+              href: "/"
+            },
+            {
+              label: "Projects",
+              href: "/projects"
+            },
+            {
+              label: "Blog",
+              href: "/blog"
+            }
+          ]}
+        />
       </div>
     </header>
   );

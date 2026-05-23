@@ -38,7 +38,7 @@ export function Home_Landing() {
       <NextEvent />
       <div className={landingStyles.scrollMarker}>
         <div />
-        <span>Scroll</span>
+        <span>scroll for amazing</span>
       </div>
     </Section>
   );

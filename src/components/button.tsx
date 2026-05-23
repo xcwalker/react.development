@@ -10,13 +10,17 @@ export default function Button(props: {
   onClick: () => void;
 	variant?: "primary" | "secondary";
   hidden?: boolean;
+  onBlur?: () => void;
+  className?: string;
 }) {
   return (
     <button
       title={props.title ? props.title : props.text}
       disabled={props.disabled}
       onClick={props.onClick}
-      className={`${styles.button} ${props.disabled ? styles.disabled : ""} ${props.variant ? styles[props.variant] : styles.secondary} ${props.hidden ? styles.hidden : ""}`}
+      onBlur={props.onBlur}
+      className={`${styles.button} ${props.disabled ? styles.disabled : ""} ${props.variant ? styles[props.variant] : styles.secondary} ${props.hidden ? styles.hidden : ""} ${props.className ? props.className : ""}`}
+
     >
       {props.text}
       {props.icon && <GFIcon icon={props.icon} className={styles.icon} />}

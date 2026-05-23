@@ -1,0 +1,97 @@
+import Button, { NavButton } from "@/components/button";
+import Image from "@/components/image";
+import Section from "@/components/section";
+import styles from "@/styles/routes/home/items.module.css";
+import type { ItemType } from "@/types";
+import itemConst from "@/routes/item/const.json";
+import { useState } from "react";
+import { itemSorter } from "@/functions/itemSorter";
+
+export function Home_Items(props: {
+  itemSet: { id: string; value: ItemType }[];
+  type: "project" | "blog";
+  canSort?: boolean;
+  hideTitle?: boolean;
+}) {
+  const [sortMethod, setSortMethod] = useState<keyof typeof itemSorter>(Object.keys(itemSorter)[0] as keyof typeof itemSorter);
+  const sortedItems = [...props.itemSet].sort(itemSorter[sortMethod].func);
+
+  const methods = Object.keys(itemSorter) as (keyof typeof itemSorter)[];
+
+  return (
+    <Section
+      id={props.type}
+      className={styles.projects}
+      container={{ className: styles.container }}
+    >
+      <header className={styles.header}>
+        {!props.hideTitle && <h2>{itemConst[props.type].title}</h2>}
+        {props.canSort && (
+          <div className={styles.select}>
+            {methods.map((method) => (
+              <Button
+                onClick={() => {
+                  setSortMethod(method);
+                }}
+                className={styles.dropdownOption}
+                title={`Sort by ${itemSorter[method].label}`}
+                variant={sortMethod === method ? "primary" : "secondary"}
+                text={itemSorter[method].label}
+              />
+            ))}
+          </div>
+        )}
+      </header>
+      <ol className={styles.list}>
+        {sortedItems.map((project) => (
+          <li key={project.id}>
+            <Item
+              id={project.id}
+              value={project.value}
+              hasThumbnail={itemConst[props.type].hasThumbnail}
+              buttonText={itemConst[props.type].buttonText}
+              href={itemConst[props.type].href}
+            />
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
+function Item(props: {
+  id: string;
+  value: ItemType;
+  hasThumbnail?: boolean;
+  buttonText: string;
+  href: string;
+}) {
+  const data = props.value.data;
+  const metadata = props.value.metaData;
+  const date = metadata ? new Date(metadata.date.modified) : null;
+
+  return (
+    <div className={styles.project}>
+      {props.hasThumbnail ? (
+        <Image
+          src={metadata.thumbnail}
+          className={styles.thumbnail}
+          usePlaceholder
+        />
+      ) : null}
+      <span className={styles.title}>{data.title}</span>
+      <span className={styles.subtitle}>
+        <span className={styles.date}>{date?.toLocaleDateString()}</span>
+        {metadata.collectionName && (
+          <>
+            <span className={styles.separatorDot}> • </span>
+            <span className={styles.collection}>
+              {metadata.collectionName}
+            </span>
+          </>
+        )}
+      </span>
+      <NavButton href={`${props.href}${props.id}`} text={props.buttonText} />
+    </div>
+  );
+}
