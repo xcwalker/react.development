@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "@/styles/components/nav.module.css";
-import Button from "./button";
-import { NavLink } from "react-router";
+import Button, { NavButton } from "./button";
 
 export default function Nav(props: {
   links: ({
@@ -79,9 +78,8 @@ export default function Nav(props: {
 
             return (
               <li key={index}>
-                <NavLink
-                  to={link.href ?? "#"}
-                  className={props.classNames?.link}
+                <NavButton
+                  href={link.href ?? "#"}
                   onClick={() => {
                     if (props.open) {
                       props.open.set(false);
@@ -92,11 +90,9 @@ export default function Nav(props: {
                       document.activeElement.blur();
                     }
                   }}
-                  target={link.openInNewTab ? "_blank" : undefined}
-                  rel={link.openInNewTab ? "noopener noreferrer" : undefined}
-                >
-                  {link.label}
-                </NavLink>
+                  openInNewTab={link.openInNewTab}
+                  text={link.label}
+                ></NavButton>
               </li>
             );
           })}

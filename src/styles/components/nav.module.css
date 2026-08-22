@@ -20,7 +20,7 @@ button.button {
     /* flex */
     display: flex;
     flex-direction: row;
-    gap: 0;
+    gap: 0.5rem;
 
     /* styling */
     list-style: none;
@@ -29,39 +29,6 @@ button.button {
   .list li {
     /* sizing */
     height: 100%;
-  }
-
-  .list li a {
-    /* sizing */
-    height: 100%;
-    padding: 1rem;
-
-    /* flex */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* font */
-    font-size: 0.8rem;
-    font-weight: 500;
-    line-height: 1;
-
-    /* styling */
-    text-decoration: none;
-    color: var(--text);
-
-    &:global(.active) {
-      background: var(--secondary);
-    }
-
-    &:hover {
-      background: var(--accent);
-    }
-
-    &:focus-visible {
-      outline: 0.25rem solid var(--accent);
-      outline-offset: -0.25rem;
-    }
   }
 
   .iconList {
@@ -116,7 +83,6 @@ button.button {
     /* styling */
     background: var(--primary);
     list-style: none;
-    overflow-y: auto;
 
     /* hiding */
     opacity: 0;

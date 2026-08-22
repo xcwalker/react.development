@@ -5,21 +5,13 @@
   bottom: auto;
   z-index: 1000;
   /* sizing */
-  height: 2.75rem;
+  height: calc(3rem + 2px);
 
-  background: #000000;
-  background: linear-gradient(
-    180deg,
-    var(--primary) 0%,
-
-    rgb(from var(--primary) r g b / 0) 100%
-  );
-  transition: background-size 0.3s ease;
-  background-size: 100% 100%;
-  overflow: clip;
+  backdrop-filter: blur(2px) brightness(0.8);
+  transition: backdrop-filter 0.3s ease;
 
   &.scrolled {
-    background-size: 100% 500%;
+    backdrop-filter: blur(10px) brightness(0.8);
   }
 }
 

@@ -13,26 +13,53 @@ export function Home_Items(props: {
   canSort?: boolean;
   hideTitle?: boolean;
   limit?: number;
+  excludeIds?: string[];
+  title?: {
+    prefix?: string;
+    suffix?: string;
+    override?: string;
+  }
+  inline?: boolean;
+  collection?: {
+    id: string;
+    exclusive?: boolean;
+  };
 }) {
   const [sortMethod, setSortMethod] = useState<keyof typeof itemSorter>(
     Object.keys(itemSorter)[0] as keyof typeof itemSorter,
   );
-  const sortedItems = [...props.itemSet].sort(itemSorter[sortMethod].func);
+  const filteredItems = props.excludeIds
+    ? props.itemSet.filter((item) => !props.excludeIds!.includes(item.id))
+    : props.itemSet;
+    const collectionFilteredItems = props.collection
+    ? (props.collection.exclusive
+        ? filteredItems.filter((item) => item.value.metaData.collection === props.collection.id)
+        : filteredItems.filter((item) => item.value.metaData.collection !== props.collection.id))
+    : filteredItems;
+  const sortedItems = [...collectionFilteredItems].sort(itemSorter[sortMethod].func);
   const limitedItems = props.limit
     ? sortedItems.slice(0, props.limit)
     : sortedItems;
 
   const methods = Object.keys(itemSorter) as (keyof typeof itemSorter)[];
 
+  if (limitedItems.length === 0) {
+    return null;
+  }
+
   return (
     <Section
       id={props.type}
       className={styles.projects}
-      container={{ className: styles.container }}
+      container={{ className:  props.inline ? styles.containerInline : styles.container }}
     >
       <header className={styles.header}>
-        {!props.hideTitle && <h2>{itemConst[props.type].title}</h2>}
-        {props.canSort && (
+        {!props.hideTitle && (
+          <h2>
+            {props.title?.prefix ?? ""}{props.title?.override ?? itemConst[props.type].title}{props.title?.suffix ?? ""}
+          </h2>
+        )}
+        {props.canSort && limitedItems.length > 1 && (
           <div className={styles.select}>
             {methods.map((method) => (
               <Button

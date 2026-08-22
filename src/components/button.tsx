@@ -36,13 +36,18 @@ export function NavButton(props: {
   href: string;
   variant?: "primary" | "secondary";
   hidden?: boolean;
+  onClick?: () => void;
+  openInNewTab?: boolean;
 }) {
   return (
     <NavLink
       to={props.href}
       title={props.title ? props.title : props.text}
       className={`${styles.button} ${props.disabled ? styles.disabled : ""} ${props.variant ? styles[props.variant] : styles.secondary} ${props.hidden ? styles.hidden : ""}`}
-    >
+      onClick={props.onClick}
+      target={props.openInNewTab ? "_blank" : undefined}
+      rel={props.openInNewTab ? "noopener noreferrer" : undefined}
+      >
       {props.text}
       {props.icon && <GFIcon icon={props.icon} className={styles.icon} />}
     </NavLink>

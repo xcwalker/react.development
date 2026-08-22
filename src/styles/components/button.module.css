@@ -17,10 +17,11 @@
   /* styling */
   background-color: transparent;
   border: 1px solid currentColor;
-  outline: 0 solid currentColor;
+  outline: 2px solid var(--_outline_color, currentColor);
+  outline-offset: -2px;
   --_transition_duration: 0.2s;
   transition:
-    outline-width var(--_transition_duration) ease-in-out,
+    outline-offset var(--_transition_duration) ease-in-out,
     outline-color var(--_transition_duration) ease-in-out,
     background-color var(--_transition_duration) ease-in-out,
     border-color var(--_transition_duration) ease-in-out,
@@ -28,17 +29,8 @@
 
   &:hover,
   &:focus-visible {
-    outline-width: 1px;
-    outline-offset: -1px;
-
-    &:hover {
-      box-shadow: 0 0 0.35rem 0.125rem var(--_box-shadow, currentColor);
-    }
-
-    &:focus-visible {
-      outline-width: 2px;
-      outline-offset: 2px;
-    }
+    outline-width: 2px;
+    outline-offset: 2px;
 
     & .icon {
       translate: 0.35rem;
@@ -46,11 +38,12 @@
   }
 }
 
-.primary {
+.primary,
+.secondary:global(.active) {
   background-color: var(--accent);
+  --_outline_color: var(--accent);
   color: var(--text-on-accent);
   border-color: var(--accent);
-  outline-color: transparent;
 
   &:hover {
     background-color: var(--accent);
@@ -64,14 +57,9 @@
 
 .secondary {
   color: var(--text);
-  outline-color: var(--text_alt);
-  border-color: var(--text_alt);
-
-  &:hover,
-  &:focus-visible {
-    outline-color: var(--text);
-    border-color: var(--text);
-  }
+  background-color: var(--secondary);
+  --_outline_color: var(--secondary);
+  border-color: transparent;
 }
 
 .disabled {

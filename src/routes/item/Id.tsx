@@ -10,14 +10,16 @@ import PageSeo from "@/components/pageSeo";
 import Image from "@/components/image";
 import Breadcrumbs from "@/components/breadcrumbs";
 import type { ItemType } from "@/types";
+import { Home_Items } from "../home/(Items)";
 
 export default function Item_ID() {
   const { id } = useParams<{ id: string }>();
-  const { itemSet } = useOutletContext<{
+  const { itemSet, type } = useOutletContext<{
     itemSet: {
       id: string;
       value: ItemType;
     }[];
+    type: "project" | "blog";
   }>();
   const item = itemSet.find((p) => p.id === id);
 
@@ -77,6 +79,32 @@ export default function Item_ID() {
           </Section>
           <Item_images item={item.value} slug={id} />
         </main>
+        <Home_Items
+          itemSet={itemSet}
+          type={type}
+          canSort
+          title={{
+            prefix: "More from " + metadata.collectionName + " collection",
+            override: ""
+          }}
+          excludeIds={[id]}
+          collection={{
+            id: metadata.collection,
+            exclusive: true,
+          }}
+        />
+        <Home_Items
+          itemSet={itemSet}
+          type={type}
+          canSort
+          title={{
+            prefix: "Other ",
+          }}
+          excludeIds={[id]}
+          collection={{
+            id: metadata.collection,
+          }}
+        />
       </Section>
     </>
   );
